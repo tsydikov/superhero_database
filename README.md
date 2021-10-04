@@ -1,4 +1,5 @@
 # Superhero database
+
 <br>
 Full stack web application that allows us to do CRUD operations of the superhero ​model
 <br>
@@ -18,4 +19,6 @@ See the details of one particular superhero with all it’s information and imag
 <li>react-routing</li>
 </ul>
 
-<p>server on heroku: https://salty-peak-51091.herokuapp.com/</p>
+<p>server repository on heroku: https://git.heroku.com/salty-peak-51091.git</p>
+<p>You can test the application by following this link: https://superhero-database.vercel.app/</p>
+<p>But I ask you to approach testing with full responsibility, everyone will have administrator rights, so make changes to the content with care.</p>
