@@ -22,7 +22,7 @@ const Create = observer(() => {
   const addNewSuperhero = (e) => {
     e.preventDefault();
     if (!file) {
-      return alert("You have to add a picture");
+      return alert("Please add an image");
     }
     const formData = new FormData();
     formData.append("nickname", nickname);
@@ -31,46 +31,47 @@ const Create = observer(() => {
     formData.append("superpowers", superpowers);
     formData.append("catch_phrase", catchPhrase);
     formData.append("image", file);
-    console.log(formData);
-    createdSuperhero(formData).then((data) => history.push(LIST_ROUTE));
+    createdSuperhero(formData).then((data) => {
+      if (data) history.push(LIST_ROUTE);
+    });
   };
 
   return (
-    <Form>
+    <Form className="p-3">
       <Form.Group className="mb-3">
         <Form.Control
           value={nickname}
           onChange={(e) => setNickname(e.target.value)}
           type="text"
-          placeholder="nickname​"
+          placeholder="Nickname"
           className="mb-3 mt-3"
         />
         <Form.Control
           value={realName}
           onChange={(e) => setRealName(e.target.value)}
           type="text"
-          placeholder="real_name"
+          placeholder="Real name"
           className="mb-3"
         />
         <Form.Control
           value={originDescription}
           onChange={(e) => setOriginDescription(e.target.value)}
           type="text"
-          placeholder="origin_description"
+          placeholder="Origin description"
           className="mb-3"
         />
         <Form.Control
           value={superpowers}
           onChange={(e) => setSuperpowers(e.target.value)}
           type="text"
-          placeholder="superpowers"
+          placeholder="Superpowers"
           className="mb-3"
         />
         <Form.Control
           value={catchPhrase}
           onChange={(e) => setCatchPhrase(e.target.value)}
           type="text"
-          placeholder="catch_phrase"
+          placeholder="Catch phrase"
           className="mb-3"
         />
         <Form.Control type="file" onChange={selectFile} />

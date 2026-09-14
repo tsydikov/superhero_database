@@ -10,18 +10,7 @@ const List = observer(() => {
   const { superhero } = useContext(Context);
 
   useEffect(() => {
-    superhero.setHeroes(
-      superhero.superheroes.slice(
-        (superhero.page - 1) * superhero.limit,
-        superhero.limit + (superhero.page - 1) * superhero.limit
-      )
-    );
-    // eslint-disable-next-line
-  }, [superhero.page, superhero.superheroes]);
-
-  useEffect(() => {
     getSuperheroes().then((data) => superhero.setSuperheroes(data));
-    // eslint-disable-next-line
   }, []);
 
   return (

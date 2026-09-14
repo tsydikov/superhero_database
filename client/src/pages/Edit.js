@@ -9,23 +9,24 @@ import { LIST_ROUTE } from "../utils/consts";
 const Edit = observer(() => {
   const history = useHistory();
   const { id } = useParams();
-  const [nickname, setNickName] = useState("");
+  const [nickname, setNickname] = useState("");
   const [realName, setRealName] = useState("");
   const [originDescription, setOriginDescription] = useState("");
   const [superpowers, setSuperpowers] = useState("");
   const [catchPhrase, setCatchPhrase] = useState("");
   const [file, setFile] = useState("");
+
   useEffect(() => {
     getOneSuperhero(id).then((data) => {
-      setNickName(data.nickname);
+      if (!data) return;
+      setNickname(data.nickname);
       setRealName(data.real_name);
       setOriginDescription(data.origin_description);
       setSuperpowers(data.superpowers);
       setCatchPhrase(data.catch_phrase);
       setFile(data.image);
     });
-    // eslint-disable-next-line
-  }, []);
+  }, [id]);
 
   const editSuperhero = (e) => {
     e.preventDefault();
@@ -37,56 +38,58 @@ const Edit = observer(() => {
     formData.append("superpowers", superpowers);
     formData.append("catch_phrase", catchPhrase);
     formData.append("image", file);
-    updateSuperhero(formData).then((data) => history.push(LIST_ROUTE));
+    updateSuperhero(formData).then((data) => {
+      if (data) history.push(LIST_ROUTE);
+    });
   };
 
   return (
-    <Form>
+    <Form className="p-3">
       <Form.Group className="mb-3">
         <Form.Control
           value={nickname}
-          onChange={(e) => setNickName(e.target.value)}
+          onChange={(e) => setNickname(e.target.value)}
           type="text"
-          placeholder="nickname​"
+          placeholder="Nickname"
           className="mb-3 mt-3"
         />
         <Form.Control
           value={realName}
           onChange={(e) => setRealName(e.target.value)}
           type="text"
-          placeholder="real_name"
+          placeholder="Real name"
           className="mb-3"
         />
         <Form.Control
           value={originDescription}
           onChange={(e) => setOriginDescription(e.target.value)}
           type="text"
-          placeholder="origin_description"
+          placeholder="Origin description"
           className="mb-3"
         />
         <Form.Control
           value={superpowers}
           onChange={(e) => setSuperpowers(e.target.value)}
           type="text"
-          placeholder="superpowers"
+          placeholder="Superpowers"
           className="mb-3"
         />
         <Form.Control
           value={catchPhrase}
           onChange={(e) => setCatchPhrase(e.target.value)}
           type="text"
-          placeholder="catch_phrase"
+          placeholder="Catch phrase"
           className="mb-3"
         />
         <Form.Control
           value={file}
           type="text"
-          placeholder="image url"
+          placeholder="Image URL"
           onChange={(e) => setFile(e.target.value)}
         />
       </Form.Group>
       <Button type="submit" onClick={editSuperhero}>
-        Submit
+        Save changes
       </Button>
     </Form>
   );

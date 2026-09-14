@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 const NavBar = () => {
   const history = useHistory();
   return (
-    <Navbar bg="primary" variant="light">
+    <Navbar bg="primary" variant="dark">
       <Container>
         <Button onClick={() => history.push(LIST_ROUTE)}>
           Superheroes list

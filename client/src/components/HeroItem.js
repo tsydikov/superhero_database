@@ -10,11 +10,13 @@ import { INFO_ROUTE } from "../utils/consts";
 const HeroItem = observer(({ hero }) => {
   const history = useHistory();
   const { superhero } = useContext(Context);
-  const click = () => {
+
+  const handleDelete = () => {
     deleteSuperhero(hero._id).then(() =>
       getSuperheroes().then((data) => superhero.setSuperheroes(data))
     );
   };
+
   return (
     <Col md={3}>
       <Card className="mt-3">
@@ -25,11 +27,11 @@ const HeroItem = observer(({ hero }) => {
           <p>
             <Image thumbnail src={API_URL + hero.image} className="mb-1" />
           </p>
-          <p class="text-center">
+          <p className="text-center">
             <strong className="mx-auto">{hero.nickname}</strong>
           </p>
         </div>
-        <Button className="mt-1" onClick={click}>
+        <Button className="mt-1" onClick={handleDelete}>
           Delete
         </Button>
       </Card>

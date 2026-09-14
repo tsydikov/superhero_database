@@ -1,24 +1,98 @@
-# Superhero database
+# Superhero Database
 
-<br>
-Full stack web application that allows us to do CRUD operations of the superhero ​model
-<br>
-List all the superheros, seeing only one image for each and it’s nickname, with
-pagination, showing 5 items at once
-<br>
-See the details of one particular superhero with all it’s information and image
-<br>
-<ul>Used stack
-<li>React.js</li>
-<li>Node.js</li>
-<li>MongoDB</li>
-<li>Espress</li>
-<li>Mobx</li>
-<li>axios</li>
-<li>Bootstrap</li>
-<li>react-routing</li>
-</ul>
+A full-stack CRUD web application for managing a superhero database. Browse heroes with pagination, view full details, add new heroes, edit or delete existing ones.
 
-<p>server repository on heroku: https://git.heroku.com/salty-peak-51091.git</p>
-<p>You can test the application by following this link: https://superhero-database.vercel.app/</p>
-<p>But I ask you to approach testing with full responsibility, everyone will have administrator rights, so make changes to the content with care.</p>
+## Features
+
+- **Hero list** — paginated grid (5 per page), each card shows the hero's image and nickname
+- **Hero detail** — full info page: nickname, real name, origin, superpowers, catch phrase
+- **Create** — add a new superhero with image upload
+- **Edit** — update any hero's fields
+- **Delete** — remove a hero directly from the list
+
+## Stack
+
+| Layer | Technology |
+|---|---|
+| UI | React 17, React Bootstrap 2, Bootstrap 5 |
+| State | MobX 6 + mobx-react-lite |
+| Routing | react-router-dom v5 |
+| HTTP | axios |
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 14+
+- A running superhero backend API
+
+### Install
+
+```bash
+git clone https://github.com/your-username/superhero_database.git
+cd superhero_database/client
+npm install
+```
+
+### Environment Variables
+
+```bash
+cp .env.example .env
+```
+
+Set your backend URL in `.env`:
+
+```
+REACT_APP_API_URL=http://localhost:5000/
+```
+
+### Run
+
+```bash
+npm start
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### Build
+
+```bash
+npm run build
+```
+
+## Project Structure
+
+```
+client/src/
+├── components/
+│   ├── AppRouter.js      # Renders routes array declaratively
+│   ├── HeroItem.js       # Hero card (image, nickname, delete button)
+│   ├── HeroesList.js     # Grid of HeroItem cards
+│   ├── NavBar.js         # Top navigation with List / Add Hero buttons
+│   └── Pages.js          # Pagination component
+├── http/
+│   ├── api.js            # API_URL constant (from env)
+│   └── index.js          # Axios functions: CRUD for superheroes
+├── pages/
+│   ├── List.js           # Hero list page with pagination
+│   ├── Info.js           # Hero detail page
+│   ├── Create.js         # Add new hero form
+│   └── Edit.js           # Edit hero form
+├── store/
+│   └── store.js          # MobX store: superheroes, page, limit, computed heroes
+├── utils/
+│   └── consts.js         # Route path constants
+├── routes.js             # Routes defined as data array
+└── App.js                # BrowserRouter + NavBar + AppRouter
+```
+
+## Superhero Model
+
+| Field | Type | Description |
+|---|---|---|
+| `nickname` | string | Hero alias (e.g. "Spider-Man") |
+| `real_name` | string | Civilian name |
+| `origin_description` | string | How they got their powers |
+| `superpowers` | string | List of abilities |
+| `catch_phrase` | string | Signature quote |
+| `image` | string | Image path served by the backend |
